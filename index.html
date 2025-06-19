@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fireball Box Cricket</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-orange: #ff6b35;
+            --neon-green: #39ff14;
+            --dark-bg: #121212;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+        }
+        .neon-text {
+            text-shadow: 0 0 10px var(--neon-orange);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .booking-calendar td:hover {
+            background: var(--neon-orange);
+            cursor: pointer;
+        }
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                transition: 0.3s;
+            }
+            .mobile-menu.active {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 glass-effect">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold neon-text">🔥 Fireball</a>
+            <button class="md:hidden text-2xl" onclick="toggleMenu()">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-orange-500">Home</a>
+                <a href="#book" class="hover:text-orange-500">Book Turf</a>
+                <a href="#tournaments" class="hover:text-orange-500">Tournaments</a>
+                <a href="#gallery" class="hover:text-orange-500">Gallery</a>
+                <a href="#contact" class="hover:text-orange-500">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu w-full h-screen bg-black bg-opacity-90 p-8" id="mobileMenu">
+        <div class="flex flex-col space-y-6 text-xl">
+            <a href="#home" class="hover:text-orange-500">Home</a>
+            <a href="#book" class="hover:text-orange-500">Book Turf</a>
+            <a href="#tournaments" class="hover:text-orange-500">Tournaments</a>
+            <a href="#gallery" class="hover:text-orange-500">Gallery</a>
+            <a href="#contact" class="hover:text-orange-500">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1920x1080/?cricket,night') center/cover">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 neon-text">Play Under the Lights</h1>
+            <p class="text-xl md:text-2xl mb-8">Book Your Box Cricket Turf Now</p>
+            <a href="#book" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full text-lg transition-all">
+                Book Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Book Your Slot</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-effect p-6 rounded-lg">
+                    <h3 class="text-xl mb-4">Select Date & Time</h3>
+                    <div class="booking-calendar grid grid-cols-7 gap-2 mb-6">
+                        <!-- Calendar will be populated by JS -->
+                    </div>
+                    <div class="time-slots grid grid-cols-4 gap-2">
+                        <!-- Time slots will be populated by JS -->
+                    </div>
+                </div>
+                <div class="glass-effect p-6 rounded-lg">
+                    <h3 class="text-xl mb-4">Booking Details</h3>
+                    <form id="bookingForm" class="space-y-4">
+                        <input type="text" placeholder="Your Name" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                        <input type="tel" placeholder="Phone Number" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                        <select class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                            <option>Select Turf</option>
+                            <option>Turf A - ₹1000/hr</option>
+                            <option>Turf B - ₹800/hr</option>
+                        </select>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 py-3 rounded">
+                            Confirm Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournaments Section -->
+    <section id="tournaments" class="py-20 px-4 bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Upcoming Tournaments</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tournament cards will be populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="galleryGrid">
+                <!-- Gallery items will be populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Contact Us</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl mb-4">Location</h3>
+                    <div class="h-64 bg-gray-800 rounded-lg">
+                        <!-- Map placeholder -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl mb-4">Get in Touch</h3>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Name" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                        <input type="email" placeholder="Email" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                        <textarea placeholder="Message" class="w-full p-2 rounded bg-gray-800 border border-gray-700 h-32"></textarea>
+                        <button type="submit" class="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating CTA -->
+    <a href="https://wa.me/1234567890" class="floating-cta bg-green-500 hover:bg-green-600 p-4 rounded-full">
+        <i class="bi bi-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // Generate calendar
+        function generateCalendar() {
+            const calendar = document.querySelector('.booking-calendar');
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            
+            // Add day headers
+            days.forEach(day => {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'text-center font-bold';
+                dayEl.textContent = day;
+                calendar.appendChild(dayEl);
+            });
+
+            // Add calendar dates
+            for(let i = 1; i <= 31; i++) {
+                const dateEl = document.createElement('div');
+                dateEl.className = 'text-center p-2 border border-gray-700 rounded hover:bg-orange-500 cursor-pointer';
+                dateEl.textContent = i;
+                calendar.appendChild(dateEl);
+            }
+        }
+
+        // Generate time slots
+        function generateTimeSlots() {
+            const timeSlots = document.querySelector('.time-slots');
+            const slots = ['6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM'];
+            
+            slots.forEach(slot => {
+                const slotEl = document.createElement('div');
+                slotEl.className = 'text-center p-2 border border-gray-700 rounded hover:bg-orange-500 cursor-pointer';
+                slotEl.textContent = slot;
+                timeSlots.appendChild(slotEl);
+            });
+        }
+
+        // Generate tournament cards
+        function generateTournaments() {
+            const tournamentsContainer = document.querySelector('#tournaments .grid');
+            const tournaments = [
+                {
+                    title: 'Night Premier League',
+                    date: 'Dec 15-20, 2023',
+                    prize: '₹50,000'
+                },
+                {
+                    title: 'Corporate Challenge',
+                    date: 'Jan 5-10, 2024',
+                    prize: '₹30,000'
+                },
+                {
+                    title: 'Weekend Warriors',
+                    date: 'Jan 20-22, 2024',
+                    prize: '₹25,000'
+                }
+            ];
+
+            tournaments.forEach(tournament => {
+                const card = document.createElement('div');
+                card.className = 'glass-effect p-6 rounded-lg';
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2">${tournament.title}</h3>
+                    <p class="mb-2">${tournament.date}</p>
+                    <p class="text-orange-500 mb-4">Prize Pool: ${tournament.prize}</p>
+                    <button class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded w-full">
+                        Register Now
+                    </button>
+                `;
+                tournamentsContainer.appendChild(card);
+            });
+        }
+
+        // Generate gallery
+        function generateGallery() {
+            const gallery = document.getElementById('galleryGrid');
+            for(let i = 1; i <= 8; i++) {
+                const img = document.createElement('div');
+                img.className = 'aspect-square bg-gray-800 rounded-lg overflow-hidden';
+                img.style.backgroundImage = `url(https://source.unsplash.com/random/400x400/?cricket,${i})`;
+                img.style.backgroundSize = 'cover';
+                img.style.backgroundPosition = 'center';
+                gallery.appendChild(img);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCalendar();
+            generateTimeSlots();
+            generateTournaments();
+            generateGallery();
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
